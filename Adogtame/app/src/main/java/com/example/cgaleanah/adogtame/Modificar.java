@@ -24,6 +24,7 @@ public class Modificar extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         usuario = bundle.get("usuario").toString();
 
+        iBD = new InterfazBD(this);
         nombre = (EditText) findViewById(R.id.etNombre);
         contra1 = (EditText) findViewById(R.id.etContra1);
         contra2 = (EditText) findViewById(R.id.etContra2);
@@ -32,7 +33,27 @@ public class Modificar extends AppCompatActivity {
     }
 
     public void modificar(View v){
-        String n, c, t, d;
-        iBD = new 
+        String n, c1, c2, t, d;
+
+        n = nombre.getText().toString();
+        c1 = contra1.getText().toString();
+        c2 = contra2.getText().toString();
+        t = telefono.getText().toString();
+        d = direccion.getText().toString();
+
+        if(n != "")
+            iBD.modificaUsuario("nombre", usuario, n);
+
+        if(c1 != "" && c1 == c2)
+            iBD.modificaUsuario("contra", usuario, c1);
+
+        if(t != "")
+            iBD.modificaUsuario("telefono", usuario, t);
+
+        if(d != "")
+            iBD.modificaUsuario("direccion", usuario, d);
+
+        Toast.makeText(this, "Tus datos fueron modificados", Toast.LENGTH_LONG).show();
+
     }
 }
