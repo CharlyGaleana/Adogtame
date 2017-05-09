@@ -15,7 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registro"></activity>
+        <activity android:name=".Registro" />
+        <activity android:name=".PantallaInicio" />
+        <activity android:name=".Modificar" />
+        <activity android:name=".Adoptar" />
+        <activity android:name=".Solicitudes" />
+        <activity android:name=".AgregarPerro"></activity>
     </application>
 
 </manifest>

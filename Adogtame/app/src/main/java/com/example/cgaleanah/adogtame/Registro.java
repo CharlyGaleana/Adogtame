@@ -28,7 +28,7 @@ public class Registro extends AppCompatActivity {
         direccion = (EditText) findViewById(R.id.etDireccion);
     }
 
-    protected void agregaUsuario(View v){
+    public void agregarUsuario(View view) {
         String u = usuario.getText().toString();
         String c1 = contra1.getText().toString();
         String c2 = contra2.getText().toString();
@@ -43,5 +43,4 @@ public class Registro extends AppCompatActivity {
             } else Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
         } else Toast.makeText(this, "Asegurate de que todos los campos esten llenos.", Toast.LENGTH_SHORT).show();
     }
-
 }
