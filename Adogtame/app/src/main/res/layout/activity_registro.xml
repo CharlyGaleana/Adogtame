@@ -30,7 +30,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evUsuario"/>
+                android:id="@+id/etUsuario"/>
 
         </LinearLayout>
 
@@ -47,7 +47,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evContra1"/>
+                android:id="@+id/etContra1"/>
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evContra2"/>
+                android:id="@+id/etContra2"/>
 
         </LinearLayout>
 
@@ -81,7 +81,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evNombre"/>
+                android:id="@+id/etNombre"/>
 
         </LinearLayout>
 
@@ -98,7 +98,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evTelefono"/>
+                android:id="@+id/etTelefono"/>
 
         </LinearLayout>
 
@@ -115,7 +115,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/evDireccion"/>
+                android:id="@+id/etDireccion"/>
 
         </LinearLayout>
 
@@ -123,6 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrar"
+            android:onClick="agregarUsuario"
             android:id="@+id/btRegistrar"/>
 
     </LinearLayout>
