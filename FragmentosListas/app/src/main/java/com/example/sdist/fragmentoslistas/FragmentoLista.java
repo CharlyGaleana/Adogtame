@@ -4,7 +4,6 @@ package com.example.sdist.fragmentoslistas;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +16,17 @@ import android.widget.ListView;
  */
 public class FragmentoLista extends ListFragment {
 
+    String var;
     InterfazBD iBD;   //clase donde se maneja la bd
     Cursor res;   //lector que tiene los datos de una busqueda
     SimpleCursorAdapter sca;   //conexion entre los datos y el fragmento
-    ListView lv;
-
 
     public FragmentoLista() {
         // Required empty public constructor
+    }
+
+    public FragmentoLista(String var){
+        this.var = var;
     }
 
 
@@ -42,6 +44,7 @@ public class FragmentoLista extends ListFragment {
         //crear el cuersor de la bd con los resultados de la tabla
         res=iBD.traerDatos();
         sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        //sca = new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
         this.setListAdapter(sca);
 
 
