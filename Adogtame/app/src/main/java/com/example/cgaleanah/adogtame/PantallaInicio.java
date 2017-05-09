@@ -21,21 +21,33 @@ public class PantallaInicio extends AppCompatActivity {
 
     public void modificar(View view){
         Intent intent = new Intent(PantallaInicio.this, Modificar.class);
+        Bundle b = new Bundle();
+        b.putString("usuario",usuario);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
     public void adoptar(View view){
         Intent intent = new Intent(PantallaInicio.this, Adoptar.class);
+        Bundle b = new Bundle();
+        b.putString("usuario",usuario);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
     public void agregarPerro(View view){
         Intent intent = new Intent(PantallaInicio.this, AgregarPerro.class);
+        Bundle b = new Bundle();
+        b.putString("usuario",usuario);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
     public void solicitudes(View view){
         Intent intent = new Intent(PantallaInicio.this, Solicitudes.class);
+        Bundle b = new Bundle();
+        b.putString("usuario",usuario);
+        intent.putExtras(b);
         startActivity(intent);
     }
 

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm= getFragmentManager();
         FragmentTransaction ft= fm.beginTransaction();
 
-        Fragment f1= new FragmentoLista();
+        Fragment f1 = new FragmentoLista();
         ft.add(R.id.actividadPrincipal, f1);
         ft.commit();
 
