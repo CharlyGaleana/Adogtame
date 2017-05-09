@@ -1,5 +1,6 @@
 package com.example.cgaleanah.adogtame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,11 @@ public class Registro extends AppCompatActivity {
         direccion = (EditText) findViewById(R.id.etDireccion);
     }
 
+    private void regresa(){
+        Intent intent = new Intent(Registro.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void agregarUsuario(View view) {
         String u = usuario.getText().toString();
         String c1 = contra1.getText().toString();
@@ -39,7 +45,8 @@ public class Registro extends AppCompatActivity {
 
         if(u != "" && c1 != "" && c2 != "" && n != "" && t != "" && d != ""){
             if(c1 == c2){
-
+                iBD.insertaUsuario(u, c1, n, t, d);
+                regresa();
             } else Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
         } else Toast.makeText(this, "Asegurate de que todos los campos esten llenos.", Toast.LENGTH_SHORT).show();
     }
