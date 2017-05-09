@@ -120,6 +120,12 @@ public class InterfazBD {
         close();
     }
 
+    public boolean miSolicitud(String usuario, int id){
+        open();
+        String query = "select * from solicitudes where _id =" + id + " and destinatario =" + usuario;
+        close();
+    }
+
     public Cursor solicitudes(String usuario){
         Cursor res;
         open();

@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText usuario;
     private EditText contra;
+    private InterfazBD iBD = new InterfazBD(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void registrar(View v){
         Intent intent = new Intent(MainActivity.this, Registro.class);
-        //Bundle b = new Bundle();
-        //b.putString("Nombre", txUno.getText().toString());
-        //intent.putExtras(b);
         startActivity(intent);
     }
 
     public void iniciaSesion(View v){
-        Intent intent = new Intent(MainActivity.this, PantallaInicio.class);
-        Bundle b = new Bundle();
-        b.putString("usuario",usuario.getText().toString());
-        intent.putExtras(b);
-        startActivity(intent);
+        if(iBD.loginUsuario(usuario.getText().toString(), contra.getText().toString())) {
+            Intent intent = new Intent(MainActivity.this, PantallaInicio.class);
+            Bundle b = new Bundle();
+            b.putString("usuario", usuario.getText().toString());
+            intent.putExtras(b);
+            startActivity(intent);
+        }
     }
 }
