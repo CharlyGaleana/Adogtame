@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutBlankFragment"
+    tools:context="com.example.sdist.fragmentoslistas.BlankFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dato: "
+            android:textSize="28dp"
+            android:id="@+id/texto"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/datoUsuario"
+            android:layout_toRightOf="@+id/texto"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="agregar"
+            android:id="@+id/botonAgregar"
+            android:layout_below="@+id/datoUsuario"/>
+
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

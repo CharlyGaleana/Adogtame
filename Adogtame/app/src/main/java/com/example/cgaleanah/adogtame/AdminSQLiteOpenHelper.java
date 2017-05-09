@@ -10,22 +10,32 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
 
+
+    private String createUsuarios = "create table usuarios(usuario text primary key, contraseña text, nombre text, telefono text, direccion text)";
+    private String createPerros = "create table perros(_id integer primary key autoincrement, nombre text, sexo text, raza text, edad text)";
+    private String createSolicitudes = "create table solicitudes(_id integer primary key autoincrement, rem text, dest text)";
+
+    private String updateUsuarios = "drop table if exists usuarios";
+    private String updatePerros = "drop table if exists perros";
+    private String updateSolicitudes = "drop table if exists solicitudes";
+
     public AdminSQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table usuarios(usuario text primary key, contraseña text, nombre text, telefono text, direccion text)");
-        db.execSQL("create table perros(nombre text, sexo text, raza text, edad text)");
+        db.execSQL(createUsuarios);
+        db.execSQL(createPerros);
+        db.execSQL(createSolicitudes);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists usuarios");
-        db.execSQL("create table usuarios(usuario text primary key, nombre text, telefono text, direccion text)");
-        db.execSQL("drop table if exists perros");
-        db.execSQL("create table perros(nombre text, sexo text, raza text, edad text)");
+        db.execSQL(updateUsuarios);
+        db.execSQL(updatePerros);
+        db.execSQL(updateSolicitudes);
+        onCreate(db);
     }
 
 }
