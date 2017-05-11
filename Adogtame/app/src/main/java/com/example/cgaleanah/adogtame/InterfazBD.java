@@ -28,14 +28,15 @@ public class InterfazBD {
     }
 
     public void open() throws SQLiteException {
-        con.getWritableDatabase();
+        db = con.getWritableDatabase();
     }
 
     public void close() throws SQLiteException {
         con.close();
     }
 
-    public void insertaUsuario(String user, String contra, String nom, String tel, String dir){
+    //inserta un nuevo usuario en la base de datos
+    public void insertaUsuario(View v, String user, String contra, String nom, String tel, String dir){
         ContentValues valores = new ContentValues();
         open();
 
@@ -49,34 +50,37 @@ public class InterfazBD {
         close();
     }
 
+    //modifica la columna indicada por 'column' para el usuario indicado por el parámetro asignando el nuevo valor 'newValue'
     public int modificaUsuario(String column, String usuario, String newValue){
         int ret;
         ContentValues valores = new ContentValues();
         open();
         valores.put(column, newValue);
-        ret = db.update("usuarios", valores, "usuario =" + usuario, null);
+        ret = db.update("usuarios", valores, "usuario ='" + usuario + "'", null);
         close();
         return ret;
     }
 
+    //devuelve todos los datos de un usuario
     public Cursor datosUsuario(String usuario){
         Cursor res;
         open();
 
-        String query = "select * from usuarios where usuario =" + usuario;
+        String query = "select * from usuarios where usuario ='" + usuario + "' ;";
         res = db.rawQuery(query, null);
         close();
         return res;
     }
 
+    //verifica que la contraseña corresponda al usuario indicado
     public boolean loginUsuario(String usuario, String contra){
         open();
-        Cursor fila = db.rawQuery("select * from usuarios where usuario =" + usuario + " and contra =" + contra, null);
-        close();
+        Cursor fila = db.rawQuery("select * from usuarios where usuario ='" + usuario + "' and contra ='" + contra + "' ;", null);
         return fila.moveToFirst();
     }
 
-    public void insertaPerro(String nombre, String owner, String sexo, String raza, String edad){
+    //inserta un perro en la base de datos.
+    public int  insertaPerro(String nombre, String owner, String sexo, String raza, String edad){
         ContentValues valores = new ContentValues();
         open();
 
@@ -90,19 +94,21 @@ public class InterfazBD {
         close();
     }
 
-    public Cursor buscaPerros(String usuario, String sexo, String raza, int edad){
+    //
+    public Cursor buscaPerros(String usuario , String sexo, String raza , int edad){
         Cursor res;
         open();
 
         //select * from perros where owner != usuario and sexo like 'sexo%' and raza like 'raza%' and edad <= edad
-        String query = "select * from perros where owner !=" + usuario + " and sexo like '" + sexo + "%' and raza like'" + raza + "%' and edad <=" + edad;
+        String query = "select * from perros";
         res = db.rawQuery(query, null);
-        close();
+
         return res;
     }
 
     // private String createSolicitudes = "create table solicitudes(_id integer primary key autoincrement, remitente text, destinatario text)";
 
+    //
     public void insertarSolicitud(String remitente, String destinatario){
         ContentValues valores = new ContentValues();
         open();
@@ -120,17 +126,18 @@ public class InterfazBD {
         close();
     }
 
-    public boolean miSolicitud(String usuario, int id){
+    /*public boolean miSolicitud(String usuario, int id){
         open();
         String query = "select * from solicitudes where _id =" + id + " and destinatario =" + usuario;
         close();
-    }
+    }*/
 
+    //
     public Cursor solicitudes(String usuario){
         Cursor res;
         open();
 
-        String query = "select solicitudes.*, perros.nombre from solicitudes, perros where destinatario = owner and destinatario =" + usuario;
+        String query = "select solicitudes.*, perros.nombre from solicitudes, perros where destinatario = owner and destinatario ='" + usuario + "' ;";
         res = db.rawQuery(query, null);
         close();
         return res;

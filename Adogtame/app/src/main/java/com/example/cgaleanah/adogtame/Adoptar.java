@@ -1,10 +1,12 @@
 package com.example.cgaleanah.adogtame;
 
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 public class Adoptar extends AppCompatActivity {
@@ -23,13 +25,20 @@ public class Adoptar extends AppCompatActivity {
         raza = (EditText) findViewById(R.id.etRaza);
         edad = (EditText) findViewById(R.id.etEdad);
         sexo = (EditText) findViewById(R.id.etSexo);
+    }
+
+    public void buscarPerro(View v){
+        /*FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ListFragment f1 = new FragmentoLista(usuario, sexo.getText().toString(), raza.getText().toString(), edad.getText().toString());
+        ft.add(R.id.actividadPrincipal, f1);
+        ft.commit()*/
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment f1 = new FragmentoLista(usuario, sexo.getText().toString(), raza.getText().toString(), edad.getText().toString());
-        ft.add(R.id.actividadPrincipal, f1);
-        ft.commit();
-
+        //ft.add(R.id.actividadPrincipal, f1);
+        //ft.commit();
 
     }
 }

@@ -41,16 +41,16 @@ public class Modificar extends AppCompatActivity {
         t = telefono.getText().toString();
         d = direccion.getText().toString();
 
-        if(n != "")
+        if(!n.equals(""))
             iBD.modificaUsuario("nombre", usuario, n);
 
-        if(c1 != "" && c1 == c2)
+        if(!c1.equals("") && c1.equals(c2))
             iBD.modificaUsuario("contra", usuario, c1);
 
-        if(t != "")
+        if(!t.equals(""))
             iBD.modificaUsuario("telefono", usuario, t);
 
-        if(d != "")
+        if(!d.equals(""))
             iBD.modificaUsuario("direccion", usuario, d);
 
         Toast.makeText(this, "Tus datos fueron modificados", Toast.LENGTH_LONG).show();
