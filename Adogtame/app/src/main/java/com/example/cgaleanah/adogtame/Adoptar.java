@@ -19,6 +19,12 @@ public class Adoptar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adoptar);
 
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment f1 = new FragmentoLista();
+        ft.add(R.id.actividadPrincipal, f1);
+        ft.commit();
+
         Bundle bundle = getIntent().getExtras();
         usuario = bundle.get("usuario").toString();
 
@@ -28,17 +34,10 @@ public class Adoptar extends AppCompatActivity {
     }
 
     public void buscarPerro(View v){
-        /*FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ListFragment f1 = new FragmentoLista(usuario, sexo.getText().toString(), raza.getText().toString(), edad.getText().toString());
-        ft.add(R.id.actividadPrincipal, f1);
-        ft.commit()*/
-
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment f1 = new FragmentoLista(usuario, sexo.getText().toString(), raza.getText().toString(), edad.getText().toString());
-        //ft.add(R.id.actividadPrincipal, f1);
-        //ft.commit();
-
+        Fragment f1 = new FragmentoLista();
+        ft.add(R.id.actividadPrincipal, f1);
+        ft.commit();
     }
 }

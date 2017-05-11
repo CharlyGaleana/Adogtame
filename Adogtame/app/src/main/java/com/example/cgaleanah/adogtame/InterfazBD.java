@@ -35,6 +35,32 @@ public class InterfazBD {
         con.close();
     }
 
+    public void insertarDatosPrueba(){
+        ContentValues valores;
+        open();
+        valores = new ContentValues();
+        valores.put("datos", "hola");
+        db.insert("tablaprueba", null, valores);
+        valores.put("datos", "cara");
+        db.insert("tablaprueba", null, valores);
+        valores.put("datos", "de");
+        db.insert("tablaprueba", null, valores);
+        valores.put("datos", "bola");
+        db.insert("tablaprueba", null, valores);
+    }
+
+    public Cursor traerDatos(){
+        Cursor res= null;
+        open();
+        String query= "select * from tablaprueba";
+        res= db.rawQuery(query, null);
+        if(res.getCount() == 0) {
+            insertarDatosPrueba();
+            res = db.rawQuery(query, null);
+        }
+        return res;
+    }
+
     //inserta un nuevo usuario en la base de datos
     public void insertaUsuario(View v, String user, String contra, String nom, String tel, String dir){
         ContentValues valores = new ContentValues();
@@ -80,7 +106,7 @@ public class InterfazBD {
     }
 
     //inserta un perro en la base de datos.
-    public int  insertaPerro(String nombre, String owner, String sexo, String raza, String edad){
+    public void insertaPerro(String nombre, String owner, String sexo, String raza, String edad){
         ContentValues valores = new ContentValues();
         open();
 
@@ -107,15 +133,12 @@ public class InterfazBD {
     }
 
     // private String createSolicitudes = "create table solicitudes(_id integer primary key autoincrement, remitente text, destinatario text)";
-
-    //
     public void insertarSolicitud(String remitente, String destinatario){
         ContentValues valores = new ContentValues();
         open();
 
         valores.put("remitente", remitente);
         valores.put("destinatario", destinatario);
-
         db.insert("solicitudes", null, valores);
         close();
     }

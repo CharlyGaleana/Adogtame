@@ -21,10 +21,5 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.actividadPrincipal, f1);
         ft.commit();
 
-        Fragment f2= new BlankFragment();
-        ft= fm.beginTransaction();
-        ft.add(R.id.fragmento_agregar, f2);
-        ft.commit();
-
     }
 }

@@ -1,4 +1,4 @@
-package com.example.cgaleanah.adogtame;
+package com.example.bd.prueba;
 
 
 import android.app.ListFragment;
@@ -42,8 +42,8 @@ public class FragmentoLista extends ListFragment {
         iBD= new InterfazBD(this.getActivity());
         //crear el cuersor de la bd con los resultados de la tabla
         res=iBD.traerDatos();
-        //sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
-        sca = new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        //sca = new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
         this.setListAdapter(sca);
 
 
