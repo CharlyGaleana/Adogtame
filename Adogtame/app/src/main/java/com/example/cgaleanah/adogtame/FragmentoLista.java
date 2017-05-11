@@ -8,14 +8,12 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentoLista extends ListFragment {
 
-    String var;
+    String usuario, sexo, raza, edad;
     InterfazBD iBD;   //clase donde se maneja la bd
     Cursor res;   //lector que tiene los datos de una busqueda
     SimpleCursorAdapter sca;   //conexion entre los datos y el fragmento
@@ -24,28 +22,28 @@ public class FragmentoLista extends ListFragment {
         // Required empty public constructor
     }
 
-    public FragmentoLista(String var){
-        this.var = var;
+    public FragmentoLista(String usuario, String sexo, String raza, String edad){
+        this.usuario = usuario;
+        this.sexo = sexo;
+        this.raza = raza;
+        this.edad = edad;
     }
 
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= super.onCreateView(inflater, container, savedInstanceState);
         //nombre de las columnas en la bd
-        String[] arregloColumnas= {"_id", "datos"};
+        String[] arregloColumnas= {"_id", "owner", "nombre", "sexo", "raza", "edad"};
         //TextViews del renglon donde se guardan los datos y los metes a un arreglo
-        int[]to= {R.id.texto1, R.id.texto2};
+        int[]to= {R.id.tvid, R.id.tvown, R.id.tvnom, R.id.tvsex, R.id.tvraza, R.id.tvedad};
         //crear la conexion con la bd
         iBD= new InterfazBD(this.getActivity());
         //crear el cuersor de la bd con los resultados de la tabla
-        res=iBD.traerDatos();
-        //sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
-        sca = new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        res=iBD.buscaPerros(usuario, sexo, raza, 15);
+        sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        //sca = new SimpleCursorAdapter(this.getActivsity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
         this.setListAdapter(sca);
-
 
         return v;
     }

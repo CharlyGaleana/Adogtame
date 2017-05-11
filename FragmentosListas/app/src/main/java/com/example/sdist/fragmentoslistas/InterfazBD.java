@@ -68,10 +68,6 @@ public class InterfazBD {
         open();
         String query= "select * from tablaprueba";
         res= db.rawQuery(query, null);
-        if(res.getCount() == 0) {
-            insertarDatosPrueba();
-            res = db.rawQuery(query, null);
-        }
         return res;
     }
 }
