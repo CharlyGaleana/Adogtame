@@ -28,10 +28,10 @@ public class Adoptar extends AppCompatActivity {
     }
 
     public void buscarPerro(View v){
-        FragmentManager fm = getFragmentManager();
+        /*FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment f1 = new FragmentoLista(usuario, sexo.getText().toString(), raza.getText().toString(), edad.getText().toString());
         ft.add(R.id.actividadPrincipal, f1);
-        ft.commit();
+        ft.commit();*/
     }
 }

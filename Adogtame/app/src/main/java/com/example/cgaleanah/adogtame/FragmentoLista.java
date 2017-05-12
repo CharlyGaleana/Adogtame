@@ -4,12 +4,13 @@ package com.example.cgaleanah.adogtame;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-
 
 public class FragmentoLista extends ListFragment {
 
@@ -22,28 +23,31 @@ public class FragmentoLista extends ListFragment {
         // Required empty public constructor
     }
 
-    public FragmentoLista(String usuario, String sexo, String raza, String edad){
-        this.usuario = usuario;
-        this.sexo = sexo;
-        this.raza = raza;
-        this.edad = edad;
-    }
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v= super.onCreateView(inflater, container, savedInstanceState);
-        //nombre de las columnas en la bd
-        String[] arregloColumnas= {"_id", "owner", "nombre", "sexo", "raza", "edad"};
-        //TextViews del renglon donde se guardan los datos y los metes a un arreglo
-        int[]to= {R.id.tvid, R.id.tvown, R.id.tvnom, R.id.tvsex, R.id.tvraza, R.id.tvedad};
-        //crear la conexion con la bd
-        iBD= new InterfazBD(this.getActivity());
-        //crear el cuersor de la bd con los resultados de la tabla
-        res=iBD.buscaPerros(usuario, sexo, raza, 15);
-        sca= new SimpleCursorAdapter(this.getActivity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
-        //sca = new SimpleCursorAdapter(this.getActivsity(), R.layout.formato_renglon, res, arregloColumnas, to, 0);
+        View v=super.onCreateView(inflater, container, savedInstanceState);
+
+        //Nombres de las columnas en la bd
+        String []arregloColumnas={"_id","datos"};
+        //Textviews del renglon donde se van a guardar los datos
+        int []to={R.id.texto1,R.id.texto2};
+        //crear conexion con la bd
+        iBD=new InterfazBD(this.getActivity());
+        //crear cursor de la bd con los resultados de la tabla
+        res=iBD.traerDatos();
+        //Pasarle el cursor a la actividad
+        //startManagingCursor(res);
+        //Crear el adaptador para mostrar los datos
+        sca=new SimpleCursorAdapter(
+                this.getActivity(), //Actividad papa de todos
+                R.layout.formato_renglon, //Formato que se repite en la lista
+                res, //Cursor que tiene los datos de la consulta
+                arregloColumnas, //Nombres de las columnas de la bd
+                to, //Elementos destino en el layout del renglon
+                0); //Este cero no hay que pelarlo
+        //Pegar el adaptador a la lista
         this.setListAdapter(sca);
+
 
         return v;
     }
