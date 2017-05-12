@@ -73,18 +73,10 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ColmillitosA"/>
-
-
-        </LinearLayout>
+            android:layout_height="wrap_content">
+        </ListView>
 
     </LinearLayout>
 </RelativeLayout>
