@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ConexionBD extends SQLiteOpenHelper {
 
-    String cadenaCreate="create table if not exists tablaprueba(_id integer primary key autoincrement, datos text not null)";
+    private String cadenaCreate="create table if not exists tablaprueba(_id integer primary key autoincrement, datos text not null)";
     private String createUsuarios = "create table if not exists usuarios(usuario text primary key, contra text, nombre text, telefono text, direccion text)";
-    private String createPerros = "create table if not exists perros(_id integer primary key autoincrement, string owner, nombre text, sexo text, raza text, edad integer)";
+    private String createPerros = "create table if not exists perros(_id integer primary key autoincrement, owner text, nombre text, sexo text, raza text, edad integer)";
     private String createSolicitudes = "create table if not exists solicitudes(_id integer primary key autoincrement, remitente text, destinatario text)";
 
     private String updateUsuarios = "drop table if exists usuarios";

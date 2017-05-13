@@ -41,7 +41,7 @@ public class Modificar extends AppCompatActivity {
         t = telefono.getText().toString();
         d = direccion.getText().toString();
 
-        if(!n.equals(""))
+        if(!n.equals("")) //si se modificó este campo, modifica la informacion en la base de datos
             iBD.modificaUsuario("nombre", usuario, n);
 
         if(!c1.equals("") && c1.equals(c2))

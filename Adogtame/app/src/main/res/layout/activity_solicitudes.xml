@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Escribe el ID del perro que deseas adoptar:"/>
+                    android:text="Escribe el ID de la solicitud que quieres aceptar o rechazar:"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -51,7 +51,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Adoptar"/>
+                android:text="Confirmar"
+                android:onClick="confirmar"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rechazar"
+                android:onClick="eliminar"/>
 
         </LinearLayout>
 

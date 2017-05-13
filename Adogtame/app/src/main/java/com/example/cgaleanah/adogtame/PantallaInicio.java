@@ -15,7 +15,7 @@ public class PantallaInicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_inicio);
 
-        Bundle bundle = this.getIntent().getExtras();
+        Bundle bundle = this.getIntent().getExtras();//Recuperamos el usuario que acaba de iniciar sesion
         usuario = bundle.get("usuario").toString();
     }
 

@@ -3,7 +3,9 @@ package com.example.cgaleanah.adogtame;
 
 import android.app.ListFragment;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,18 +25,26 @@ public class FragmentoLista extends ListFragment {
         // Required empty public constructor
     }
 
+    public FragmentoLista(String usuario, String sexo, String raza, String edad){
+        this.usuario = usuario;
+        this.sexo = sexo;
+        this.raza = raza;
+        this.edad = edad;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v=super.onCreateView(inflater, container, savedInstanceState);
 
         //Nombres de las columnas en la bd
-        String []arregloColumnas={"_id","datos"};
+        String []arregloColumnas={"_id","owner", "nombre", "sexo", "raza", "edad"};
         //Textviews del renglon donde se van a guardar los datos
-        int []to={R.id.texto1,R.id.texto2};
+        int []to={R.id.tvid,R.id.tvown, R.id.tvnom, R.id.tvsex, R.id.tvraza, R.id.tvedad};
         //crear conexion con la bd
         iBD=new InterfazBD(this.getActivity());
         //crear cursor de la bd con los resultados de la tabla
-        res=iBD.traerDatos();
+        res=iBD.buscarPerros(usuario, sexo, raza, edad);
         //Pasarle el cursor a la actividad
         //startManagingCursor(res);
         //Crear el adaptador para mostrar los datos

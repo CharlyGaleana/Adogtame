@@ -43,10 +43,10 @@ public class Registro extends AppCompatActivity {
         String d = direccion.getText().toString();
         iBD = new InterfazBD(this);
 
-        if(!u.equals("") && !c1.equals("") && !c2.equals("") && !n.equals("") && !t.equals("") && !d.equals("") ){
-            if(c1.equals(c2)){
+        if(!u.equals("") && !c1.equals("") && !c2.equals("") && !n.equals("") && !t.equals("") && !d.equals("") ){ // verifica que todos los campos se hayan llenado
+            if(c1.equals(c2)){ //verifica que las dos contraseñas ingresadas coincidan
                 iBD.insertaUsuario(view, u, c1, n, t, d);
-                //Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tu cuenta ha sido creada, Ingresa tus datos para iniciar sesión.", Toast.LENGTH_SHORT).show();
                 regresa();
             } else Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
         } else Toast.makeText(this, "Asegurate de que todos los campos esten llenos.", Toast.LENGTH_SHORT).show();

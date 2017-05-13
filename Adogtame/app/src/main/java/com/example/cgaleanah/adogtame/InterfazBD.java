@@ -35,6 +35,7 @@ public class InterfazBD {
         con.close();
     }
 
+    //prueba de la base de datos
     public void insertarDatosPrueba(){
         ContentValues valores;
         open();
@@ -49,6 +50,7 @@ public class InterfazBD {
         db.insert("tablaprueba", null, valores);
     }
 
+    //prueba de la base de datos
     public Cursor traerDatos(){
         Cursor res= null;
         open();
@@ -110,8 +112,8 @@ public class InterfazBD {
         ContentValues valores = new ContentValues();
         open();
 
-        valores.put("nombre", nombre);
         valores.put("owner", owner);
+        valores.put("nombre", nombre);
         valores.put("sexo", sexo);
         valores.put("raza", raza);
         valores.put("edad", edad);
@@ -120,19 +122,26 @@ public class InterfazBD {
         close();
     }
 
-    //
-    public Cursor buscaPerros(String usuario , String sexo, String raza , int edad){
+    //Perros que pueden ser adoptados por un usuario dados sus requerimentos.
+    public Cursor buscarPerros(String usuario , String sexo, String raza , String edad){
         Cursor res;
         open();
 
-        //select * from perros where owner != usuario and sexo like 'sexo%' and raza like 'raza%' and edad <= edad
-        String query = "select * from perros";
+        String query = "select * from perros whew usuario = '" + usuario + "' and sexo like '" + sexo + "%' and raza like '" + raza + "%' and edad <=" + edad + ";";
         res = db.rawQuery(query, null);
 
         return res;
     }
 
-    // private String createSolicitudes = "create table solicitudes(_id integer primary key autoincrement, remitente text, destinatario text)";
+    //devuelve el dueño del perro con _id id
+    public String getOwner(String id){
+        open();
+        String query = "select owner from perros where id =" + id + ";";
+        Cursor res = db.rawQuery(query, null);
+        res.moveToFirst();
+        return res.getString(0);
+    }
+
     public void insertarSolicitud(String remitente, String destinatario){
         ContentValues valores = new ContentValues();
         open();
@@ -143,19 +152,23 @@ public class InterfazBD {
         close();
     }
 
-    public void eliminaSolicitud(int id){
+    //
+
+    public void eliminaSolicitud(String id){
         open();
         db.delete("solicitudes", "_id =" + id, null);
         close();
     }
 
-    /*public boolean miSolicitud(String usuario, int id){
+    //Funcion para verificar que una solicitud pertenezca a un usuario
+    public boolean miSolicitud(String usuario, String id){
         open();
-        String query = "select * from solicitudes where _id =" + id + " and destinatario =" + usuario;
-        close();
-    }*/
+        String query = "select * from solicitudes where _id =" + id + " and destinatario ='" + usuario + "'";
+        Cursor fila = db.rawQuery(query,null);
+        return fila.moveToFirst();
+    }
 
-    //
+    //Devuelve todas las solicitudes que han sido enviadas a un usuario.
     public Cursor solicitudes(String usuario){
         Cursor res;
         open();

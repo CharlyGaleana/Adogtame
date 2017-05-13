@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void iniciaSesion(View v){
         String u = usuario.getText().toString(), c = contra.getText().toString();
-        if(!u.equals("") && !c.equals("")) {
-            if (iBD.loginUsuario(u, c)) {
+        if(!u.equals("") && !c.equals("")) { // verifica que se hayan llenado ambos campos
+            if (iBD.loginUsuario(u, c)) { // verifica que el usuario exista, y que la contraseña coincida con la guardada en la base de datos
                 Intent intent = new Intent(MainActivity.this, PantallaInicio.class);
                 Bundle b = new Bundle();
                 b.putString("usuario", usuario.getText().toString());
