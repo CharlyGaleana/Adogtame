@@ -1,2 +1,2 @@
 # Adogtame
-2do Proyecto de DAI
+Segundo proyecto de la materia de Desarrollo de Aplicaciones Informáticas
